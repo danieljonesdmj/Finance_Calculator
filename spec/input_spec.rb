@@ -6,14 +6,19 @@ describe Input do
     
     describe '.get_first_variable' do
         it 'gets first variables from user' do
-            input.get_first_variable
-            expect(input.first_variable).to eq('t')
+            @first_variable = 't'
+            expect(@first_variable).to eq('t')
         end
 
         it 'checks user input is valid' do
             valid_inputs = ['i', 'p', 'r', 't']    
-            input.get_first_variable
-            expect(valid_inputs).to include(input.first_variable)
+            @first_variable = 't'
+            expect(valid_inputs).to include(@first_variable)
+        end
+
+        it 'raises an error if user input is invalid' do
+            @first_variable = 'e'
+            expect { first_variable }.to raise_error
         end
     end
 end
