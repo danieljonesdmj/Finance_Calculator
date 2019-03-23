@@ -24,7 +24,15 @@ describe Input do
 
     describe '.get_first_value' do
         it 'gets first value from user' do
-            expect(input.get_first_value).to eq(10)
+            input.get_first_variable
+            input.get_first_value
+            expect(input.variables).to eq('t' => 1)
+        end
+
+        it 'checks user inputted value is a float' do
+            input.get_first_variable
+            input.get_first_value
+            expect(input.first_value).to be_instance_of(Float)
         end
     end
 end
