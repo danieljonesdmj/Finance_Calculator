@@ -16,4 +16,10 @@ class Input
         end
     end
 
+    def get_first_value
+        puts "What is the value of the first variable?"
+        first_value = gets.to_i
+    end
+
+
 end
