@@ -19,8 +19,12 @@ class Input
     def get_first_value
         puts "What is the value of the first variable?"
         @first_value = gets.to_f.round(2)
+        if @first_value > 0
         @variables[first_variable] = @first_value
+        else
+        raise "invalid input, please try again"
+        end
     end
 
-
+    
 end
