@@ -1,6 +1,6 @@
 class Input
 
-    attr_reader :first_variable, :first_value
+    attr_reader :first_variable, :first_value, :second_variable
 
     def initialize
         @valid_inputs = ['i', 'p', 'r', 't']    
@@ -31,6 +31,11 @@ class Input
 
     def get_second_variable
         puts "What is the second variable?"
-        second_variable = gets.chomp
+        @second_variable = gets.chomp
+
+        if @valid_inputs.include? @second_variable
+            @variables[@second_variable] = nil
+        else
+        end
     end
 end

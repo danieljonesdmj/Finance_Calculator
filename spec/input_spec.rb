@@ -2,6 +2,7 @@ require 'input'
 
 describe Input do
     let(:input) { Input.new }
+    valid_inputs = ['i', 'p', 'r', 't'] 
     
     describe '.get_first_variable' do
         it 'gets first variable from user' do
@@ -10,7 +11,6 @@ describe Input do
         end
 
         it 'checks user inputted variable is valid' do
-            valid_inputs = ['i', 'p', 'r', 't'] 
             input.instance_variable_set(:@first_variable, 't')
             expect(valid_inputs).to include(input.first_variable)
         end
@@ -40,6 +40,11 @@ describe Input do
         it 'gets second variable from user' do
             allow(input).to receive(:get_second_variable) { 'r' }            
             expect(input.get_second_variable).to eq('r')
+        end
+
+        it 'checks user inputted variable is valid' do
+            input.instance_variable_set(:@second_variable, 'r')
+            expect(valid_inputs).to include(input.second_variable)
         end
     end 
 end
