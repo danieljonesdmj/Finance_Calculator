@@ -10,12 +10,8 @@ class Input
     def get_first_variable
         puts "What is the first variable?"
         @first_variable = gets.chomp
-        raise "invalid input, please try again" if !@valid_inputs.include? @first_variable
-        
-        if @valid_inputs.include? @first_variable
-            @variables[@first_variable] = nil
-        else
-        end
+        valid_input(@first_variable)
+        add_key(@first_variable)
     end
 
     def get_first_value
@@ -32,11 +28,17 @@ class Input
     def get_second_variable
         puts "What is the second variable?"
         @second_variable = gets.chomp
-        raise "invalid input, please try again" if !@valid_inputs.include? @second_variable
+        valid_input(@second_variable)
+        add_key(@second_variable)
+    end
 
-        if @valid_inputs.include? @second_variable
-            @variables[@second_variable] = nil
-        else
+    def valid_input(input)
+        raise "invalid input, please try again" if !@valid_inputs.include? input
+    end
+
+    def add_key(key)
+        if @valid_inputs.include? key
+            @variables[key] = nil
         end
     end
 end
