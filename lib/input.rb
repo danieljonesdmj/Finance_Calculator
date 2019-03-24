@@ -1,6 +1,6 @@
 class Input
 
-    attr_reader :first_variable, :first_value, :second_variable
+    attr_reader :first_variable, :first_value, :second_variable, :variables
 
     def initialize
         @valid_inputs = ['i', 'p', 'r', 't']    
