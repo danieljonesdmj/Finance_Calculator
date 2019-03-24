@@ -32,6 +32,7 @@ class Input
     def get_second_variable
         puts "What is the second variable?"
         @second_variable = gets.chomp
+        raise "invalid input, please try again" if !@valid_inputs.include? @second_variable
 
         if @valid_inputs.include? @second_variable
             @variables[@second_variable] = nil

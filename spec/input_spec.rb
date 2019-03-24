@@ -46,5 +46,9 @@ describe Input do
             input.instance_variable_set(:@second_variable, 'r')
             expect(valid_inputs).to include(input.second_variable)
         end
+
+        it 'raises an error if user inputted variable is invalid' do
+            allow(input).to receive(:get_second_variable).and_raise(StandardError.new("error"))
+        end
     end 
 end
