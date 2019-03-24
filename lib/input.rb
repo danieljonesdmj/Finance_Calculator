@@ -1,30 +1,36 @@
 class Input
 
-    attr_reader :first_variable, :variables, :first_value
+    attr_reader :first_variable, :first_value
+
+    def initialize
+        @valid_inputs = ['i', 'p', 'r', 't']    
+        @variables = {}
+    end
    
     def get_first_variable
-        valid_inputs = ['i', 'p', 'r', 't']    
-        @variables = {}
-        
         puts "What is the first variable?"
         @first_variable = gets.chomp
-        raise "invalid input, please try again" if !valid_inputs.include? first_variable
-
-        if valid_inputs.include? first_variable
-            @variables[first_variable] = nil
+        raise "invalid input, please try again" if !@valid_inputs.include? @first_variable
+        
+        if @valid_inputs.include? @first_variable
+            @variables[@first_variable] = nil
         else
         end
     end
 
     def get_first_value
-        puts "What is the value of the first variable?"
+        puts "What is the value of the first value?"
         @first_value = gets.to_f.round(2)
+        
         if @first_value > 0
-        @variables[first_variable] = @first_value
+            @variables[@first_variable] = @first_value
         else
-        raise "invalid input, please try again"
+            raise "invalid input, please try again"
         end
     end
 
-    
+    def get_second_variable
+        puts "What is the second variable?"
+        second_variable = gets.chomp
+    end
 end
