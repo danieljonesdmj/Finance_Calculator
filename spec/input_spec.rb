@@ -153,4 +153,12 @@ describe Input do
             expect(input.time).to eq(10)
         end
     end
+
+    describe '.calculate_rate' do
+        it 'calculates the rate from user inputted information' do
+            allow(input).to receive(:calculate_rate).with(2000, 200, 10)
+            input.instance_variable_set(:@rate, 1)
+            expect(input.rate).to eq(1)
+        end
+    end
 end
