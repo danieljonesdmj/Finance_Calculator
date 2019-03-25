@@ -72,5 +72,14 @@ describe Input do
             allow(input).to receive(:get_second_value) { 2 }            
             expect(input.get_second_value).to eq(2)
         end
+
+        it 'checks user inputted value is a float' do
+            input.instance_variable_set(:@second_value, 1.234)
+            expect(input.second_value).to be_instance_of(Float)
+        end
+        
+        it 'raises an error if user inputted value is invalid' do
+            allow(input).to receive(:get_second_value).and_raise(StandardError.new("error"))
+        end
     end
 end

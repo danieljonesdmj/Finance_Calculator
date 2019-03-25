@@ -35,6 +35,12 @@ class Input
     def get_second_value
         puts "What is the value of the second value?"
         @second_value = gets.to_f.round(2)
+
+        if @second_value > 0
+            @variables[@second_variable] = @second_value
+        else
+            raise "invalid input, please try again"
+        end
     end
 
     def valid_input(input)
