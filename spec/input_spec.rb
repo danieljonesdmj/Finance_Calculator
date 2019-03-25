@@ -81,5 +81,10 @@ describe Input do
         it 'raises an error if user inputted value is invalid' do
             allow(input).to receive(:get_second_value).and_raise(StandardError.new("error"))
         end
+
+        it 'sets second_value as the hash value to second_variable key' do
+            input.instance_variable_set(:@variables, {'t' => 1, 'r' => 2})
+            expect(input.variables).to eq({'t' => 1, 'r' => 2})
+        end
     end
 end
