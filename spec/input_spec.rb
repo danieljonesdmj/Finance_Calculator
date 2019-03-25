@@ -108,4 +108,25 @@ describe Input do
             expect(input.variables).to eq({'t' => 1, 'r' => 2, 'i' => nil})
         end
     end 
+
+    describe '.get_third_value' do
+        it 'gets third value from user' do
+            allow(input).to receive(:get_third_value) { 3 }            
+            expect(input.get_third_value).to eq(3)
+        end
+
+        it 'checks user inputted value is a float' do
+            input.instance_variable_set(:@third_value, 1.234)
+            expect(input.third_value).to be_instance_of(Float)
+        end
+        
+        it 'raises an error if user inputted value is invalid' do
+            allow(input).to receive(:get_third_value).and_raise(StandardError.new("error"))
+        end
+
+        it 'sets third_value as the hash value to third_variable key' do
+            input.instance_variable_set(:@variables, {'t' => 1, 'r' => 2, 'i' => 3})
+            expect(input.variables).to eq({'t' => 1, 'r' => 2, 'i' => 3})
+        end
+    end
 end
