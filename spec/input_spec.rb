@@ -145,4 +145,12 @@ describe Input do
             expect(input.amount).to eq(2000)
         end
     end
+
+    describe '.calculate_time' do
+        it 'calculates the time from user inputted information' do
+            allow(input).to receive(:calculate_time).with(2000, 1, 200)
+            input.instance_variable_set(:@time, 10)
+            expect(input.time).to eq(10)
+        end
+    end
 end
