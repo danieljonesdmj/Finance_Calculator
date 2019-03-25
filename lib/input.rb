@@ -1,7 +1,7 @@
 class Input
 
     attr_reader :first_variable, :first_value, :second_variable, :variables, :second_value, :third_variable, 
-    :third_value, :interest, :amount, :time, :rate
+    :third_value, :interest, :amount, :time, :rate, :formatted_output
 
     def initialize
         @valid_inputs = ['i', 'p', 'r', 't']    
@@ -101,5 +101,10 @@ class Input
             calculate_rate(@variables['p'], @variables['i'], @variables['t'])
         else 
         end
+    end
+
+    def output(calculated_value)
+        @formatted_output = calculated_value.to_f.round(2)
+        puts @formatted_output
     end
 end

@@ -187,4 +187,11 @@ describe Input do
             expect(input.calculate).to eq(1)
         end
     end
+
+    describe '.output' do
+        it 'displays the value for the fourth variable' do
+            input.instance_variable_set(:@formatted_output, 200.23)
+            expect(input.formatted_output).to eq(200.23)
+        end
+    end
 end
