@@ -137,4 +137,12 @@ describe Input do
             expect(input.interest).to eq(200)
         end
     end
+
+    describe '.calculate_amount' do
+        it 'calculates the amount from user inputted information' do
+            allow(input).to receive(:calculate_amount).with(200, 1, 10)
+            input.instance_variable_set(:@amount, 2000)
+            expect(input.amount).to eq(2000)
+        end
+    end
 end

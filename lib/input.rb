@@ -1,6 +1,7 @@
 class Input
 
-    attr_reader :first_variable, :first_value, :second_variable, :variables, :second_value, :third_variable, :third_value, :interest
+    attr_reader :first_variable, :first_value, :second_variable, :variables, :second_value, :third_variable, 
+    :third_value, :interest, :amount
 
     def initialize
         @valid_inputs = ['i', 'p', 'r', 't']    
@@ -74,5 +75,9 @@ class Input
     def calculate_interest(amount, rate, time)
         rate = rate/100.to_f    
         @interest = amount * rate * time
+    end
+
+    def calculate_amount(interest, rate, time)
+        @amount = interest * rate * time
     end
 end
