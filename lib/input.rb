@@ -1,6 +1,6 @@
 class Input
 
-    attr_reader :first_variable, :first_value, :second_variable, :variables
+    attr_reader :first_variable, :first_value, :second_variable, :variables, :second_value
 
     def initialize
         @valid_inputs = ['i', 'p', 'r', 't']    
@@ -30,6 +30,11 @@ class Input
         @second_variable = gets.chomp
         valid_input(@second_variable)
         add_key(@second_variable)
+    end
+
+    def get_second_value
+        puts "What is the value of the second value?"
+        @second_value = gets.to_f.round(2)
     end
 
     def valid_input(input)

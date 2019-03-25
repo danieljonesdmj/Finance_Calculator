@@ -66,4 +66,11 @@ describe Input do
             expect(input.variables).to eq({'t' => 1, 'r' => nil})
         end
     end 
+
+    describe '.get_second_value' do
+        it 'gets second value from user' do
+            allow(input).to receive(:get_second_value) { 2 }            
+            expect(input.get_second_value).to eq(2)
+        end
+    end
 end
