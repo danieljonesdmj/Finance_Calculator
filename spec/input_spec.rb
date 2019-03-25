@@ -161,4 +161,30 @@ describe Input do
             expect(input.rate).to eq(1)
         end
     end
+
+    describe '.calculate' do
+        it 'calculates the missing variable-interest' do
+            input.instance_variable_set(:@variables, {'t' => 10, 'r' => 1, 'p' => 2000})         
+            input.instance_variable_set(:@interest, 200)
+            expect(input.calculate).to eq(200)
+        end
+
+        it 'calculates the missing variable-amount' do
+            input.instance_variable_set(:@variables, {'i' => 200, 'r' => 1, 't' => 10})         
+            input.instance_variable_set(:@amount, 2000)
+            expect(input.calculate).to eq(2000)
+        end
+
+        it 'calculates the missing variable-time' do
+            input.instance_variable_set(:@variables, {'p' => 2000, 'r' => 1, 'i' => 200})         
+            input.instance_variable_set(:@time, 10)
+            expect(input.calculate).to eq(10)
+        end
+
+        it 'calculates the missing variable-rate' do
+            input.instance_variable_set(:@variables, {'p' => 2000, 'i' => 200, 't' => 10})         
+            input.instance_variable_set(:@rate, 1)
+            expect(input.calculate).to eq(1)
+        end
+    end
 end

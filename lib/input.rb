@@ -89,4 +89,17 @@ class Input
     def calculate_rate(amount, interest, time)
         @rate = time/(amount / interest)
     end
+
+    def calculate
+        if !@variables.include?('i')
+            calculate_interest(@variables['p'], @variables['r'], @variables['t'])
+        elsif !@variables.include?('p')
+            calculate_amount(@variables['i'], @variables['r'], @variables['t'])
+        elsif !@variables.include?('t')
+            calculate_time(@variables['p'], @variables['r'], @variables['i'])
+        elsif !@variables.include?('r')
+            calculate_rate(@variables['p'], @variables['i'], @variables['t'])
+        else 
+        end
+    end
 end
