@@ -129,4 +129,12 @@ describe Input do
             expect(input.variables).to eq({'t' => 1, 'r' => 2, 'i' => 3})
         end
     end
+
+    describe '.calculate_interest' do
+        it 'calculates the interest from user inputted information' do
+            allow(input).to receive(:calculate_interest).with(2000, 1, 10)
+            input.instance_variable_set(:@interest, 200)
+            expect(input.interest).to eq(200)
+        end
+    end
 end
