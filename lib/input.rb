@@ -1,7 +1,7 @@
 class Input
 
     attr_reader :first_variable, :first_value, :second_variable, :variables, :second_value, :third_variable, 
-    :third_value, :interest, :amount, :time, :rate, :formatted_output
+    :third_value, :interest, :amount, :time, :rate, :formatted_output, :funky_font, :result
 
     def initialize
         @valid_inputs = ['i', 'p', 'r', 't']    
@@ -105,6 +105,134 @@ class Input
 
     def output(calculated_value)
         @formatted_output = calculated_value.to_f.round(2)
-        puts @formatted_output
+        @result = @formatted_output.to_s.split(//)
+        create_funky_font(@result)
+    end
+
+    def create_funky_font(output)
+        @funky_font_numbers = {'0' => 
+            '
+            ===
+            @@@
+            @ @
+            @ @
+            @ @
+            @@@
+            ===',
+            
+            '1' => 
+            '
+            =
+            @
+            @
+            @
+            @
+            @
+            =', 
+            
+            '2' =>
+            '
+            ===
+            @@@
+              @
+            @@@
+            @
+            @@@
+            ===',
+            
+            '3' =>
+            '
+            ===
+            @@@
+              @
+            @@@
+              @
+            @@@
+            === ',
+            
+            '4' => 
+            '
+            ===
+            @ @
+            @ @ 
+            @@@
+              @
+              @
+            ===',
+        
+            '5' => 
+            '
+            ===
+            @@@
+            @ 
+            @@@
+              @
+            @@@
+            ===',
+            
+            '6' => 
+            '
+            ===
+            @@@
+            @ 
+            @@@
+            @ @
+            @@@
+                
+            ===',
+            
+            '7' =>
+            '
+            ===
+            @@@
+              @
+              @
+              @
+              @
+            ===',
+                
+            '8' =>
+            '
+            ===
+            @@@
+            @ @
+            @@@
+            @ @
+            @@@
+            ===',
+                
+            '9' =>
+            '
+            ===
+            @@@
+            @ @
+            @@@
+              @
+            @@@
+            ===',
+            
+            '.' =>
+            '
+              =
+            
+            
+            
+              @
+              =',
+    
+            ' ' =>
+            '=
+            
+            
+            
+            
+            
+            ='
+        }
+        
+        @funky_font = []
+        output.each { |e| @funky_font.push(@funky_font_numbers[e])  }
+        @joined_font = @funky_font.join()
+        print @joined_font
     end
 end

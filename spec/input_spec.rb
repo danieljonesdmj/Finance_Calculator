@@ -193,5 +193,11 @@ describe Input do
             input.instance_variable_set(:@formatted_output, 200.23)
             expect(input.formatted_output).to eq(200.23)
         end
-    end
+
+        it 'holds output in an array' do
+            allow(input).to receive(:output).with(4.37)
+            input.instance_variable_set(:@result, [4.37])
+            expect(input.result).to be_instance_of(Array)
+            end
+        end    
 end
