@@ -87,4 +87,25 @@ describe Input do
             expect(input.variables).to eq({'t' => 1, 'r' => 2})
         end
     end
+
+    describe '.get_third_variable' do
+        it 'gets third variable from user' do
+            allow(input).to receive(:get_third_variable) { 'i' }          
+            expect(input.get_third_variable).to eq('i')
+        end
+
+        it 'checks user inputted variable is valid' do
+            input.instance_variable_set(:@third_variable, 'i')
+            expect(valid_inputs).to include(input.third_variable)
+        end
+
+        it 'raises an error if user inputted variable is invalid' do
+            allow(input).to receive(:get_third_variable).and_raise(StandardError.new("error"))
+        end
+
+        it 'adds third_variable as key to the variables hash' do
+            input.instance_variable_set(:@variables, {'t' => 1, 'r' => 2, 'i' => nil})
+            expect(input.variables).to eq({'t' => 1, 'r' => 2, 'i' => nil})
+        end
+    end 
 end

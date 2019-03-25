@@ -1,6 +1,6 @@
 class Input
 
-    attr_reader :first_variable, :first_value, :second_variable, :variables, :second_value
+    attr_reader :first_variable, :first_value, :second_variable, :variables, :second_value, :third_variable
 
     def initialize
         @valid_inputs = ['i', 'p', 'r', 't']    
@@ -41,6 +41,13 @@ class Input
         else
             raise "invalid input, please try again"
         end
+    end
+
+    def get_third_variable
+        puts "What is the third variable?"
+        @third_variable = gets.chomp
+        valid_input(@third_variable)
+        add_key(@third_variable)
     end
 
     def valid_input(input)
