@@ -1,7 +1,7 @@
 class Input
 
     attr_reader :first_variable, :first_value, :second_variable, :variables, :second_value, :third_variable, 
-    :third_value, :interest, :amount, :time, :rate, :formatted_output, :funky_font, :result
+    :third_value, :interest, :amount, :time, :rate, :formatted_output, :funky_font, :result, :decimal_place_count
 
     def initialize
         @valid_inputs = ['i', 'p', 'r', 't']    
@@ -9,61 +9,113 @@ class Input
     end
    
     def get_first_variable
-        puts "What is the first variable?"
-        @first_variable = gets.chomp
-        valid_input(@first_variable)
-        add_key(@first_variable)
+        @first_variable = ''
+        @valid_inputs = ['i', 'p', 'r', 't']    
+        until @valid_inputs.include? @first_variable
+            puts "What will the first variable be?"
+            @first_variable = gets.chomp
+        end
+        
+        @valid_inputs.delete(@first_variable)
+            add_key(@first_variable)
+            get_first_value
     end
 
     def get_first_value
-        puts "What is the value of the first value?"
-        @first_value = gets.to_f.round(2)
+        puts "What is the value of the first variable?"
+        @first_value = gets.strip
         
-        if @first_value > 0
-            @variables[@first_variable] = @first_value
+        if  @first_value.to_f > 0  
+            if @first_value.include?('.')
+                decimal_place_counter(@first_value)
+
+                if decimal_place_count < 3
+                    @variables[@first_variable] = @first_value.to_f
+                    get_second_variable
+                else
+                    get_first_value
+                end
+            else
+                @variables[@first_variable] = @first_value.to_f
+                get_second_variable
+            end
         else
-            raise "invalid input, please try again"
+            get_first_value
         end
     end
 
     def get_second_variable
-        puts "What is the second variable?"
-        @second_variable = gets.chomp
-        valid_input(@second_variable)
-        add_key(@second_variable)
+        @second_variable = ''
+        until @valid_inputs.include? @second_variable
+            puts "What will the second variable be?"
+            @second_variable = gets.chomp
+        end
+        
+            @valid_inputs.delete(@second_variable)
+            add_key(@second_variable)
+            get_second_value
     end
 
     def get_second_value
-        puts "What is the value of the second value?"
-        @second_value = gets.to_f.round(2)
+        puts "What is the value of the second variable?"
+        @second_value = gets.strip
+        
+        if  @second_value.to_f > 0  
+            if @second_value.include?('.')
+                decimal_place_counter(@second_value)
 
-        if @second_value > 0
-            @variables[@second_variable] = @second_value
+                if decimal_place_count < 3
+                    @variables[@second_variable] = @second_value.to_f
+                    get_third_variable
+                else
+                    get_second_value
+                end
+            else
+                @variables[@second_variable] = @second_value.to_f
+                get_third_variable
+            end
         else
-            raise "invalid input, please try again"
+            get_second_value
         end
     end
 
     def get_third_variable
-        puts "What is the third variable?"
-        @third_variable = gets.chomp
-        valid_input(@third_variable)
-        add_key(@third_variable)
+        @third_variable = ''
+        until @valid_inputs.include? @third_variable
+            puts "What will the third variable be?"
+            @third_variable = gets.chomp
+        end
+        
+            @valid_inputs.delete(@third_variable)
+            add_key(@third_variable)
+            get_third_value
     end
 
     def get_third_value
-        puts "What is the value of the third value?"
-        @third_value = gets.to_f.round(2)
+        puts "What is the value of the third variable?"
+        @third_value = gets.strip
+        
+        if  @third_value.to_f > 0  
+            if @third_value.include?('.')
+                decimal_place_counter(@third_value)
 
-        if @third_value > 0
-            @variables[@third_variable] = @third_value
+                if decimal_place_count < 3
+                    @variables[@third_variable] = @third_value.to_f
+                    calculate
+                else
+                    get_third_value
+                end
+            else
+                @variables[@third_variable] = @third_value.to_f
+                calculate
+            end
         else
-            raise "invalid input, please try again"
+            get_third_value
         end
     end
 
-    def valid_input(input)
-        raise "invalid input, please try again" if !@valid_inputs.include? input
+    def decimal_place_counter(input)
+        @decimal_place_count = input[input.index('.')..-1].delete('.').size   
     end
 
     def add_key(key)
@@ -75,19 +127,23 @@ class Input
     def calculate_interest(amount, rate, time)
         rate = rate/100.to_f    
         @interest = amount * rate * time
+        output(@interest)
     end
 
     def calculate_amount(interest, rate, time)
         @amount = interest * rate * time
+        output(@amount)
     end
 
     def calculate_time(amount, rate, interest)
         rate = rate/100.to_f    
         @time = interest/(amount * rate)
+        output(@time)
     end
 
     def calculate_rate(amount, interest, time)
         @rate = time/(amount / interest)
+        output(@rate)
     end
 
     def calculate
