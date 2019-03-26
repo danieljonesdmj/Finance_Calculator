@@ -15,10 +15,6 @@ describe Input do
             expect(valid_inputs).to include(input.first_variable)
         end
 
-        it 'raises an error if user inputted variable is invalid' do            
-            allow(input).to receive(:get_first_variable).and_raise(StandardError.new("error"))
-        end
-
         it 'sets first_variables as variables hash key' do
             input.instance_variable_set(:@variables, {'t' => nil})
             expect(input.variables).to eq({'t' => nil})
@@ -34,10 +30,6 @@ describe Input do
         it 'checks user inputted value is a float' do
             input.instance_variable_set(:@first_value, 1.234)
             expect(input.first_value).to be_instance_of(Float)
-        end
-    
-        it 'raises an error if user inputted value is invalid' do
-            allow(input).to receive(:get_first_value).and_raise(StandardError.new("error"))
         end
 
         it 'sets first_value as the hash value to first_variable key' do
@@ -57,10 +49,6 @@ describe Input do
             expect(valid_inputs).to include(input.second_variable)
         end
 
-        it 'raises an error if user inputted variable is invalid' do
-            allow(input).to receive(:get_second_variable).and_raise(StandardError.new("error"))
-        end
-
         it 'adds second_variable as key to the variables hash' do
             input.instance_variable_set(:@variables, {'t' => 1, 'r' => nil})
             expect(input.variables).to eq({'t' => 1, 'r' => nil})
@@ -76,10 +64,6 @@ describe Input do
         it 'checks user inputted value is a float' do
             input.instance_variable_set(:@second_value, 1.234)
             expect(input.second_value).to be_instance_of(Float)
-        end
-        
-        it 'raises an error if user inputted value is invalid' do
-            allow(input).to receive(:get_second_value).and_raise(StandardError.new("error"))
         end
 
         it 'sets second_value as the hash value to second_variable key' do
@@ -99,10 +83,6 @@ describe Input do
             expect(valid_inputs).to include(input.third_variable)
         end
 
-        it 'raises an error if user inputted variable is invalid' do
-            allow(input).to receive(:get_third_variable).and_raise(StandardError.new("error"))
-        end
-
         it 'adds third_variable as key to the variables hash' do
             input.instance_variable_set(:@variables, {'t' => 1, 'r' => 2, 'i' => nil})
             expect(input.variables).to eq({'t' => 1, 'r' => 2, 'i' => nil})
@@ -118,10 +98,6 @@ describe Input do
         it 'checks user inputted value is a float' do
             input.instance_variable_set(:@third_value, 1.234)
             expect(input.third_value).to be_instance_of(Float)
-        end
-        
-        it 'raises an error if user inputted value is invalid' do
-            allow(input).to receive(:get_third_value).and_raise(StandardError.new("error"))
         end
 
         it 'sets third_value as the hash value to third_variable key' do
