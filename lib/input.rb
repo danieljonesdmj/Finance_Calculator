@@ -290,5 +290,26 @@ class Input
         output.each { |e| @funky_font.push(@funky_font_numbers[e])  }
         @joined_font = @funky_font.join()
         print @joined_font
+        continue_or_quit
+    end
+
+    def welcome
+        puts 'Welcome to Funky Finance!'
+        get_first_variable
+    end
+
+    def continue_or_quit
+        @user = ''
+        input = ['c', 'q']
+        until input.include? @user
+            puts 'Continue or quit?'
+            @user = gets.chomp
+
+            if @user == 'c'
+                @variables.clear
+                get_first_variable
+            elsif @user == 'q' 
+            end
+        end
     end
 end
