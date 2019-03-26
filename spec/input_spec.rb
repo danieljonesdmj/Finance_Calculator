@@ -18,7 +18,12 @@ describe Input do
         it 'sets first_variables as variables hash key' do
             input.instance_variable_set(:@variables, {'t' => nil})
             expect(input.variables).to eq({'t' => nil})
-        end        
+        end  
+        
+        it 'deletes first_variable from array' do
+          allow(input).to receive(:get_first_variable) { 't' }
+          expect(input.valid_inputs).to include('p', 'i', 'r')
+      end
     end
 
     describe '.get_first_value' do
@@ -53,6 +58,11 @@ describe Input do
             input.instance_variable_set(:@variables, {'t' => 1, 'r' => nil})
             expect(input.variables).to eq({'t' => 1, 'r' => nil})
         end
+
+        it 'deletes second_variable from array' do
+          allow(input).to receive(:get_second_variable) { 'r' }
+          expect(input.valid_inputs).to include('p', 'i', 't')
+      end
     end 
 
     describe '.get_second_value' do
@@ -87,6 +97,11 @@ describe Input do
             input.instance_variable_set(:@variables, {'t' => 1, 'r' => 2, 'i' => nil})
             expect(input.variables).to eq({'t' => 1, 'r' => 2, 'i' => nil})
         end
+
+        it 'deletes third_variable from array' do
+          allow(input).to receive(:get_third_variable) { 'i' }
+          expect(input.valid_inputs).to include('p', 't', 'r')
+      end
     end 
 
     describe '.get_third_value' do
@@ -104,6 +119,22 @@ describe Input do
             input.instance_variable_set(:@variables, {'t' => 1, 'r' => 2, 'i' => 3})
             expect(input.variables).to eq({'t' => 1, 'r' => 2, 'i' => 3})
         end
+    end
+
+    describe '.decimal_place_counter' do
+        it 'counts the decimal places from user input' do
+        allow(input).to receive(:decimal_place_counter).with('1.2233')
+        input.instance_variable_set(:@decimal_place_count, 4)
+        expect(input.decimal_place_count).to eq(4)
+        end
+    end
+
+    describe '.add_key' do
+      it 'sets user input as variable key' do
+        allow(input).to receive(:add_key).with('t')
+        input.instance_variable_set(:@variables, {'t' => nil})
+        expect(input.variables).to eq({'t' => nil})
+      end
     end
 
     describe '.calculate_interest' do
@@ -175,5 +206,5 @@ describe Input do
             input.instance_variable_set(:@result, [4.37])
             expect(input.result).to be_instance_of(Array)
             end
-        end    
+        end
 end
