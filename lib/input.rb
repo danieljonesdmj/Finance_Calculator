@@ -314,3 +314,6 @@ class Input
     end
   end
 end
+
+start = Input.new 
+start.run_program
