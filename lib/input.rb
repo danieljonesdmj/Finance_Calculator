@@ -1,6 +1,6 @@
 class Input
   attr_reader :first_variable, :first_value, :second_variable, :variables, :second_value, :third_variable, :third_value, :interest,
-  :amount, :time, :rate, :formatted_output, :funky_font, :result, :decimal_place_count, :valid_inputs, :user
+  :amount, :time, :rate, :formatted_output, :font, :result, :decimal_place_count, :valid_inputs, :user
 
   def initialize
     @valid_inputs = ['i', 'p', 'r', 't']    
@@ -151,11 +151,11 @@ class Input
   def output(calculated_value)
     @formatted_output = calculated_value.to_f.round(2)
     @result = @formatted_output.to_s.split(//)
-    create_funky_font(@result)
+    create_font(@result)
   end
 
-  def create_funky_font(output)
-    @funky_font_numbers = {'0' => 
+  def create_font(output)
+    @font_numbers = {'0' => 
           '
           ===
           @@@
@@ -275,15 +275,15 @@ class Input
           ='
       }
       
-    @funky_font = []
-    output.each { |e| @funky_font.push(@funky_font_numbers[e]) }
-    @joined_font = @funky_font.join()
+    @font = []
+    output.each { |e| @font.push(@font_numbers[e]) }
+    @joined_font = @font.join()
     print @joined_font
     continue_or_quit
   end
 
   def welcome
-    puts 'Welcome to Funky Finance!'
+    puts 'Welcome to Finance Calculator!'
   end
 
   def continue_or_quit
