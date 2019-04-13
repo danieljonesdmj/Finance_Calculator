@@ -1,3 +1,17 @@
+# How to run Program
+
+```
+git clone https://github.com/danieljonesdmj/Funky_Finance.git
+cd Funky_Finance
+ruby lib/input.rb
+```
+
+# Limitations
+
+Program runs as requested aside from one issue- The funky font displays vertically instead of horizontally. Due to this I also didn't add funky font spaces between the outputted characters. All other instructions implemented.
+
+I would have preferred to have extracted different responsibilties into different classes if I had had more time to spend on it. I would have liked to have four classes- one to retrieve the user input and set variables/values, one to calculate the missing variable, one to output the calculated value in the funky font, and one to run the program. 
+
 Funky Finance
 ===
 
