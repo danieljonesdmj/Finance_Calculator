@@ -6,12 +6,6 @@ cd Finance_Calculator
 ruby lib/input.rb
 ```
 
-# Limitations
-
-Program runs as requested aside from one issue- The font displays vertically instead of horizontally. Due to this I also didn't add font spaces between the outputted characters. All other instructions implemented.
-
-I would have preferred to have extracted different responsibilties into different classes if I had had more time to spend on it. I would have liked to have four classes- one to retrieve the user input and set variables/values, one to calculate the missing variable, one to output the calculated value in the font, and one to run the program. 
-
 Finance Calculator
 ===
 
@@ -56,6 +50,12 @@ Furthermore, the output should be in Font, using the following characters specif
 ```
 
 Once the calculated value has been shown on screen, the program should ask: `Continue or quit?`, and prompt the user to enter either `q`, in which case the program exits, or `c`, in which case the program loops back round to `What will the first variable be?`. It should reject all other input.
+
+# Limitations
+
+Program runs as requested aside from one issue- The font displays vertically instead of horizontally. Due to this I also didn't add font spaces between the outputted characters. All other instructions implemented.
+
+I would have preferred to have extracted different responsibilties into different classes if I had had more time to spend on it. I would have liked to have four classes- one to retrieve the user input and set variables/values, one to calculate the missing variable, one to output the calculated value in the font, and one to run the program. 
 
 ## Appendix
 Below are the Font characters corresponding to `1-9`, `.` and ` ` (space). There should be a space between every character.
